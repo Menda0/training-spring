@@ -14,6 +14,8 @@ public class App
         ApplicationContext context = new ClassPathXmlApplicationContext("session1/helloworld_beans.xml");
         HelloWorld helloworld = (HelloWorld) context.getBean("helloworld");
         HelloWorld helloPedro = (HelloWorld) context.getBean("helloPedro");
+        HelloWorld helloworld2 = (HelloWorld) context.getBean("helloworld");
+        
         // Use spring to do this
         // helloworld.setMessage("Ola marco");
         helloworld.printMessage();
