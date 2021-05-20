@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+	<bean id="teslax" class="com.training.spring.racecar.RaceCar" scope="prototype">
+		<property name="model" value="x" />
+		<property name="brand" value="tesla" />
+	</bean>
+	
+	<bean id="teslax2" class="com.training.spring.racecar.RaceCar" scope="prototype">
+		<property name="model" value="x" />
+		<property name="brand" value="tesla" />
+	</bean>
+	
+	<bean id="fordgt" class="com.training.spring.racecar.RaceCar" scope="prototype">
+		<property name="model" value="gt" />
+		<property name="brand" value="ford" />
+	</bean>
+	
+	<bean id="myGarage" class="com.training.spring.racecar.GarageList">
+		<property name="vehicles">
+			<list>
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				
+				<ref bean="fordgt" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="myGarageSet" class="com.training.spring.racecar.GarageSet">
+		<property name="vehicles">
+			<set>
+				<ref bean="teslax" />
+				<ref bean="teslax2" />
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				<ref bean="teslax" />
+				
+				<ref bean="fordgt" />
+			</set>
+		</property>
+	</bean>
+
+</beans>

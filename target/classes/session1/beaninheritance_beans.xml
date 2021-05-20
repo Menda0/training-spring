@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="electric" class="com.training.spring.racecar.Engine">
+		<property name="fuel" value="battery" />
+		<property name="type" value="electric" />
+	</bean>
+	
+	<bean id="slick_michelin" class="com.training.spring.racecar.Tyres">
+		<property name="type" value="slick" />
+		<property name="brand" value="michelin" />
+	</bean>
+	
+	<bean id="slick_electric" class="com.training.spring.racecar.RaceCar">
+		<property name="tyres" ref="slick_michelin" />
+		<property name="engine" ref="electric" />
+	</bean>
+	
+	<bean id="teslax" class="com.training.spring.racecar.RaceCar" parent="slick_electric">
+		<property name="brand" value="tesla" />
+		<property name="model" value="x" />
+	</bean>
+	
+	<bean id="teslay" class="com.training.spring.racecar.RaceCar" parent="slick_electric">
+		<property name="brand" value="tesla" />
+		<property name="model" value="y" />
+	</bean>
+	
+	<bean id="rain_pirelli" class="com.training.spring.racecar.Tyres">
+		<property name="type" value="rain" />
+		<property name="brand" value="pirelli" />
+	</bean>
+	
+	<bean id="v12diesel" class="com.training.spring.racecar.Engine">
+		<property name="fuel" value="diesel" />
+		<property name="type" value="v12" />
+	</bean>
+	
+	<bean id="rain_v12" class="com.training.spring.racecar.RaceCar">
+		<property name="engine" ref="v12diesel" />
+		<property name="tyres" ref="rain_pirelli" />
+	</bean>
+	
+	<bean id="fordgt" class="com.training.spring.racecar.RaceCar" parent="rain_v12">
+		<property name="model" value="gt" />
+		<property name="brand" value="ford" />
+	</bean>
+	
+	<bean id="dodgeViper" class="com.training.spring.racecar.RaceCar" parent="rain_v12">
+		<property name="model" value="viper"/>
+		<property name="brand" value="dodge" />
+	</bean>
+	
+	<bean id="teslaFormula1" class="com.training.spring.racecar.FormulaOneRaceCar" parent="teslax">
+		<property name="model" value="formulaOne" />
+		<property name="hasWing" value="true" />
+	</bean>
+</beans>

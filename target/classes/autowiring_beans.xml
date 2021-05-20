@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="radio" class="com.training.spring.racecar.Radio">
+		<property name="songs">
+			<list>
+				<value>Beatles - Here comes the sun</value>
+				<value>Beatles - Yellow submarine</value>
+				<value>Beatles - Strawberry fields</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="engine" class="com.training.spring.racecar.Engine">
+		<property name="fuel" value="battery" />
+		<property name="type" value="electric" />
+	</bean>
+	
+	<!-- This will introduce a problem because we will create more than one candidate for the bean of type Engine -->
+	<!-- <bean class="com.training.spring.racecar.Engine">
+		<property name="fuel" value="diesel" />
+		<property name="type" value="v12" />
+	</bean> -->
+	
+	<bean id="teslax" class="com.training.spring.racecar.RaceCar" autowire="byName">
+		<property name="model" value="x" />
+		<property name="brand" value="tesla" />
+		<!-- Property engine will be autowired because the bean with id engine was the same name of property engine -->
+		<!-- Property radio will be autowired because the bean with id radio was the same name of property radio -->
+	</bean>
+	
+	<bean id="teslay" class="com.training.spring.racecar.RaceCar" autowire="byType">
+		<property name="model" value="y" />
+		<property name="brand" value="tesla" />
+		<!-- Property engine will be autowired because we have a bean of type Engine -->
+		<!-- Property radio will be autowired because we have a bean of type Engine -->
+	</bean>
+	
+	<bean id="teslas" class="com.training.spring.racecar.RaceCar" autowire="constructor">
+		<constructor-arg name="model" value="y" />
+		<constructor-arg name="brand" value="tesla" />
+	</bean>
+	
+	
+</beans>
