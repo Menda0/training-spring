@@ -60,8 +60,9 @@ public class RaceCar {
 		this.radio = radio;
 	}
 
-	public void initCar() {
-		System.out.println("The car with brand:"+this.brand+" and model:"+this.model);
+	public RaceCar initCar() {
+		System.out.println("The car with brand:"+this.brand+" and model:"+this.model+" started the engine");
+		return this;
 	}
 
 	@Override

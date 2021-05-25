@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	<!-- My Advice Bean -->
+	<bean id="carLoggingAdvice"
+		class="com.training.spring.aop.CarLoggingAdvice" />
+
+	<aop:config>
+		<aop:aspect id="myAspect" ref="carLoggingAdvice">
+			<!-- Create a point cut -->
+			<aop:pointcut id="initCarPointCut"
+				expression="execution(* com.training.spring.racecar.RaceCar.initCar())" />
+			<!-- Create advice login for point cut -->
+			<aop:before pointcut-ref="initCarPointCut"
+				method="beforeAdvice" />
+			<aop:after pointcut-ref="initCarPointCut"
+				method="afterAdvice" />
+			<aop:after-returning
+				pointcut-ref="initCarPointCut" method="afterReturningAdvice"
+				returning="retVal" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean class="com.training.spring.racecar.Radio">
+		<property name="songs">
+			<list>
+				<value>Beatles - Here comes the sun</value>
+				<value>Beatles - Yellow submarine</value>
+				<value>Beatles - Strawberry fields</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="teslax" class="com.training.spring.racecar.RaceCar">
+		<property name="brand" value="tesla" />
+		<property name="model" value="x" />
+	</bean>
+
+	<bean id="teslay" class="com.training.spring.racecar.RaceCar">
+		<property name="brand" value="tesla" />
+		<property name="model" value="y" />
+	</bean>
+
+</beans>
